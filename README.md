@@ -2,7 +2,7 @@
 
 ## Overview of the Analysis
 
-The goal of this analysis is to build a model that predicts the creditworthiness of borrowers for a peer-to-peer lending service. The company aims to minimize the risk of lending to unhealthy borrowers.
+In this analysis, we evaluated five different machine learning models for predicting loan status (healthy loan or high-risk loan) based on the dataset. Below is a summary of the results from each model, along with an analysis of which model performs best, and how the performance might depend on the problem at hand.
 
 * Dataset Overview
   - Size: The dataset contains 77,531 entries, including features such as loan size, interest rate, borrower income, debt-to-income ratio, number of accounts, derogatory marks, total debt, and loan status.
@@ -11,69 +11,115 @@ The goal of this analysis is to build a model that predicts the creditworthiness
         1: high-risk loan (default)
 
 * Methodology
-  - Model: Logistic Regression was used to predict the loan status.
+  - Machine Learning Models: In this analysis, five different machine learning models were used to predict the loan status (whether a loan is healthy or high-risk). These models are:
+      + Logistic Regression Model
+      + Support Vector Machines (SVM) Model
+      + Decision Tree Model
+      + K-Nearest Neighbors (KNN) Model
+      + Random Forest Model
   - Process:
      + Read the lending_data.csv file into a Pandas DataFrame.
      + Split the data into features (X) and labels (y), with loan_status as the label.
      + Split the data into training and testing sets using train_test_split.
-     + Train a logistic regression model using the training set.
-     + Evaluate the model's performance using the test set.
+     + Scale the test and training features
+     + Train the model using the training set or scaled training set.
+     + Evaluate the model's performance using the test set/scaled test set.
      + Generate a confusion matrix and classification report to assess the model's accuracy.
 
 ## Results
 
-* Precision
-  - Healthy Loan (0): 1.00
-    The model correctly classifies all healthy loans as healthy with no false positives.
-  - High-Risk Loan (1): 0.84
-    The model predicts high-risk loans with 84% precision. However, 16% of the time, it mistakenly classifies healthy loans as high-risk (false positives).
+1. Logistic Regression Model
+* Accuracy Score: 0.9925
+* Confusion Matrix:
+  - True Positives (Healthy Loan): 18655
+  - False Positives (Healthy Loan classified as High-Risk): 110
+  - False Negatives (High-Risk Loan classified as Healthy): 36
+  - True Positives (High-Risk Loan): 583
+* Precision for High-Risk Loan: 0.84
+* Recall for High-Risk Loan: 0.94
+* F1-Score for High-Risk Loan: 0.89
+* Precision for Healthy Loan: 1.00
+* Recall for Healthy Loan: 0.99
+* F1-Score for Healthy Loan: 1.00
 
-* Recall
-  - Healthy Loan (0): 0.99
-    The model correctly identifies 99% of healthy loans.
-  - High-Risk Loan (1): 0.94
-    The model correctly identifies 94% of high-risk loans, missing 6% (false negatives).
+2. Support Vector Machines (SVM) Model
+* Accuracy Score: 0.9935
+* Confusion Matrix:
+  - True Positives (Healthy Loan): 18654
+  - False Positives (Healthy Loan classified as High-Risk): 111
+  - False Negatives (High-Risk Loan classified as Healthy): 15
+  - True Positives (High-Risk Loan): 604
+* Precision for High-Risk Loan: 0.84
+* Recall for High-Risk Loan: 0.98
+* F1-Score for High-Risk Loan: 0.91
+* Precision for Healthy Loan: 1.00
+* Recall for Healthy Loan: 0.99
+* F1-Score for Healthy Loan: 1.00
 
-* F1 score
-  - Healthy Loan (0): 1.00
-    The model has perfect precision and recall for healthy loans, yielding an F1-score of 1.00.
-  - High-Risk Loan (1): 0.89
-    The F1-score for high-risk loans reflects a good balance between precision and recall, though it is slightly lower than the F1-score for healthy loans due to the lower precision.
+3. Decision Tree Model
+* Accuracy Score: 0.9903
+* Confusion Matrix:
+  - True Positives (Healthy Loan): 18667
+  - False Positives (Healthy Loan classified as High-Risk): 98
+  - False Negatives (High-Risk Loan classified as Healthy): 91
+  - True Positives (High-Risk Loan): 528
+* Precision for High-Risk Loan: 0.84
+* Recall for High-Risk Loan: 0.85
+* F1-Score for High-Risk Loan: 0.85
+* Precision for Healthy Loan: 1.00
+* Recall for Healthy Loan: 0.99
+* F1-Score for Healthy Loan: 0.99
 
-* Accuracy
-  - Overall Accuracy: 0.99
-    The model achieves a 99% accuracy rate, indicating excellent overall performance in predicting loan status.
+4. K-Nearest Neighbors (KNN) Model
+* Accuracy Score: 0.9922
+* Confusion Matrix:
+  - True Positives (Healthy Loan): 18657
+  - False Positives (Healthy Loan classified as High-Risk): 108
+  - False Negatives (High-Risk Loan classified as Healthy): 44
+  - True Positives (High-Risk Loan): 575
+* Precision for High-Risk Loan: 0.84
+* Recall for High-Risk Loan: 0.93
+* F1-Score for High-Risk Loan: 0.88
+* Precision for Healthy Loan: 1.00
+* Recall for Healthy Loan: 0.99
+* F1-Score for Healthy Loan: 1.00
 
-* Average
-  - Macro Average
-      + Macro Average (Precision): 0.92
-        This is the average precision across both classes, ignoring class imbalance. It shows the model's overall performance when both classes are treated equally.
-      + Macro Average (Recall): 0.97
-        The average recall across both classes, showing that the model is generally good at identifying both healthy and high-risk loans.
-      + Macro Average (F1-Score): 0.94
-        The average F1-score across both classes, providing an overall measure of the model's performance in balancing precision and recall.
-
-  - Weighted Average:
-      + Weighted Average (Precision): 0.99
-        This is the average precision weighted by the support (the number of instances) in each class. Since there are more healthy loans than high-risk loans, the precision is weighted towards healthy loans.
-      + Weighted Average (Recall): 0.99
-        This is the weighted recall, which is very high, meaning the model does an excellent job in predicting both classes, considering the class distribution.
-      + Weighted Average (f1-score): 0.99
-        The weighted f1-score is very high, reflecting the model's good balance between precision and recall for both classes.
+5. Random Forest Model
+* Accuracy Score: 0.9917
+* Confusion Matrix:
+  - True Positives (Healthy Loan): 18657
+  - False Positives (Healthy Loan classified as High-Risk): 108
+  - False Negatives (High-Risk Loan classified as Healthy): 44
+  - True Positives (High-Risk Loan): 575
+* Precision for High-Risk Loan: 0.85
+* Recall for High-Risk Loan: 0.90
+* F1-Score for High-Risk Loan: 0.87
+* Precision for Healthy Loan: 1.00
+* Recall for Healthy Loan: 0.99
+* F1-Score for Healthy Loan: 1.00
 
 ## Summary
 
-* For Healthy Loans (0): The model performs exceptionally well, with perfect precision (1.00) and high recall (0.99), meaning it correctly identifies nearly all healthy loans.
+* Best Performing Model:
+  - SVM Model seems to perform the best overall, with the highest accuracy score (0.9935) and a good balance between precision and recall for both classes (healthy loan and high-risk loan).
+  - The model has a recall of 0.98 for high-risk loans, which is the best among all models, meaning it correctly identifies most high-risk loans. Additionally, the F1-Score for high-risk loans is 0.91, which is the highest among the models.
+  - Logistic Regression follows closely with an accuracy of 0.9925 but has slightly lower recall for high-risk loans (0.94) compared to SVM.
 
-* For High-Risk Loans (1): The model performs well with a 94% recall, meaning it correctly identifies most high-risk loans. However, it has a lower precision of 0.84, meaning that it sometimes mistakenly classifies healthy loans as high-risk (false positives).
+* Precision and Recall Trade-offs:
+  - Healthy Loans (0) are always predicted with high precision (1.00) and recall (0.99) across all models, which means that the models are extremely effective at identifying healthy loans correctly.
+  - High-Risk Loans (1) show some variation between models, with SVM and Random Forest performing better in correctly identifying high-risk loans (higher recall), but with slightly lower precision compared to the healthy loans.
+  - For high-risk loan identification, it may be acceptable to have slightly lower precision (around 0.84) if the model improves recall, which helps in identifying more high-risk loans. SVM achieves a good balance in this case.
 
-* Overall Performance: The model has an overall accuracy of 99%, which indicates that it is very good at predicting the loan status. The macro and weighted averages of precision, recall, and f1-score suggest a strong overall performance, with only slight room for improvement in terms of precision for high-risk loans.
+* Model Selection Based on Problem Needs:
+  - If the primary goal is to minimize false positives (incorrectly classifying healthy loans as high-risk), Logistic Regression or Random Forest might be more suitable since they tend to have slightly fewer false positives than the other models.
+  - If the focus is to minimize false negatives (missing high-risk loans), SVM might be the best choice, given its high recall for high-risk loans (0.98).
+
+* Other Considerations:
+  - SVM and Logistic Regression provide the best overall accuracy scores and balance between precision and recall for both classes.
+  - Decision Tree and KNN are still effective, but they tend to have slightly lower recall for high-risk loans (especially the Decision Tree).
 
 ## Conclusion
 
-While the logistic regression model performs very well for both healthy loans and high-risk loans, there is room for improvement in the precision for high-risk loans. The model occasionally misclassifies healthy loans as high-risk loans (false positives). To address this, consider experimenting with the following:
-
-- Adjust the Decision Threshold: Increase the threshold to make the model more conservative when predicting high-risk loans, which may reduce false positives.
-- Use Resampling: Balance the dataset through oversampling the high-risk loans or undersampling the healthy loans.
-- Feature Engineering: Investigate new features or transformations of existing ones to improve model accuracy.
-- Consider Other Models: If precision for high-risk loans remains unsatisfactory, exploring other machine learning models like Random Forest or Gradient Boosting could yield better results.
+* SVM is recommended as the best model for predicting loan risk in this case, especially if the goal is to improve recall for high-risk loans without sacrificing too much precision.
+* Logistic Regression could also be used as a solid alternative, particularly if minimizing false positives is a higher priority.
+* If computational complexity or interpretability is a concern, Logistic Regression might be more desirable because it is simpler to understand and implement, while still providing good performance.
